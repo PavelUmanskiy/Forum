@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<head>
+    {% block title %}
+    {% endblock title %}
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <div class="workspace" id="#">
+        {% block content %}
+        {% endblock content %}
+    </div>
+</body>

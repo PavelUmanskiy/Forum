@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Просмотр поста</title>
+{% endblock title %}
+{% block content %}
+    <hr>
+    {{ post.title }}
+    <hr>
+    {{ post.content }}
+    <hr>
+    {% for category in post.categories.all %}
+    {{ category }}
+    {% endfor %}
+    <hr>
+    {{ post.author.username }}
+    <hr>
+    {% for reply in post.reply_set.all %}
+        {{ reply.author }}
+        {{ reply.content }}
+    {% endfor %}
+    <form method="post"> 
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Apply</button>
+    </form>
+{% endblock content %}
