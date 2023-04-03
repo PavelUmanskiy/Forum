@@ -43,7 +43,7 @@ class ReplyApproveForm(forms.ModelForm):
         model = Reply
         fields = ['approved']
         labels = {
-            'approved': '',
+            'approved': 'Одобрить отклик',
         }
 
 

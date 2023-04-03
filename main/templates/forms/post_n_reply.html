@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Просмотр поста</title>
+{% endblock title %}
+{% block content %}
+    <div class="container">
+        <h1 class="text-center">{{ post.title }}</h1>
+        <h3 class="lead">{{ post.author }} </h3>
+        <h4 class="lead">Категории: 
+            {% for category in post.categories.all %}
+                <li class="list-inline-item">{{category}}</li>
+            {% endfor %}
+        </h4>
+        <p>{{post.content|safe}}</p>
+
+        <form method="post"> 
+            {% csrf_token %}
+            {{ form.as_div }}
+            <button type="submit" style="font-size:0.8em;">Отправить</button>
+        </form>
+
+        <h3 class="lead">Отклики сообщества:</h3>
+        {% for reply in post.reply_set.all %}
+            <div>
+                <hr>
+                {{ reply.author }}
+                <br>
+                {{ reply.content }}
+            </div>
+        {% endfor %}
+        
+    </div>
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Отклик</title>
+{% endblock title %}
+{% block content %}
+    <div class="container">
+        <h1 class="text-center">{{ post.title }}</h1>
+        <h4 class="lead">Категории: 
+            {% for category in post.categories.all %}
+                <li class="list-inline-item">{{category}}</li>
+            {% endfor %}
+        </h4>
+        <p>{{post.content|safe}}</p>
+        {{ post.date_published }}
+        <hr>
+        {{ reply.author.username }}
+        <br>
+        {{ reply.content }}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Подтвердить</button>
+        </form>
+    </div>
+{% endblock content %}
